@@ -1,87 +1,90 @@
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
+
+float mean(int numberArray[], int length);
+int median(int numberArray[], int length);
+int mode(int numberArray[], int length);
+void sort(int numberArray[], int length);
+
 int main() {
-int numberOfIntegers = 5;
-float mean = 0;
-int median = 0;
-int fiveIntegers[numberOfIntegers];
-
-cout<<"Enter 5 integers: ";
-
-for (int i =0; i<numberOfIntegers; i++) {
-    cin>>fiveIntegers[i];
-    mean = mean+fiveIntegers[i];
-}
-//variables for finding mode
-int highestOccurence = 1;
-int mode = fiveIntegers[0];
-
-for (int x = 0; x < numberOfIntegers; x++) {
     
-    //sorting the numbers
-    for (int y=1; y < numberOfIntegers-x; y++) {
-         if (fiveIntegers[x] > fiveIntegers[x+y]) {
-            int temp = fiveIntegers[x];
-            fiveIntegers[x] = fiveIntegers[x+y];
-            fiveIntegers[x+y] = temp;
-        }  
+    int numberOfIntegers = 5;
+    int fiveIntegers[numberOfIntegers];
+
+    cout<<"Enter 5 integers: ";
+
+    for (int i =0; i<numberOfIntegers; i++) {
+        cin>>fiveIntegers[i];
+    }
+        int lengthOfArray = numberOfIntegers;
+
+        sort(fiveIntegers, lengthOfArray);
+
+
+        mode(fiveIntegers, lengthOfArray);
+        cout<<"The median is "<< median(fiveIntegers, lengthOfArray) <<endl;
+        cout<<"The mean is "<< mean(fiveIntegers, lengthOfArray) <<endl;
+
+    return 0;
     }
 
-}
-// // method 1
-// int numberOfOccurences = 1;
-// for (int a = 0; a < 5; a++) {
-//     int count = 1;
-//     for (int b = 1; b < 5-a; b++) {
-//         if (fiveIntegers[a] == fiveIntegers[b]) {
-//             a++;
-//             count++;
-//         }
-//     }
-//     if (count > numberOfOccurences) {
-//         mode = fiveIntegers[a-1];
-//         numberOfOccurences = count;
-//     }
 
-// }
-
-// method 2
-int occurrences[numberOfIntegers];
-
-for (int i =0; i<numberOfIntegers; i++) {
-    occurrences[i] = 0;
-}
-int maximum_occurrences = 1;
-
-for (int a = 0; a < numberOfIntegers; a++) {
-    occurrences[a] = 1;
-    for (int b = 1; b < numberOfIntegers-a; b++) {
-        if (fiveIntegers[a] == fiveIntegers[a+b]) {
-            occurrences[a]++;
+void sort(int numberArray[], int length) {
+    for (int x = 0; x < length; x++) {
+        for (int y=1; y < length-x; y++) {
+             if (numberArray[x] > numberArray[x+y]) {
+                int temp = numberArray[x];
+                numberArray[x] = numberArray[x+y];
+                numberArray[x+y] = temp;
+            }
         }
     }
-    if (occurrences[a] > maximum_occurrences) {
-        maximum_occurrences = occurrences[a];
-    }
-    a+=occurrences[a]-1;
 }
 
-for (int i = 0; i<numberOfIntegers; i++) {
-    if (occurrences[i]== maximum_occurrences) {
-        cout<<fiveIntegers[i]<< " occurred " << occurrences[i] << " time(s)"<<endl;
+float mean(int numberArray[], int length) {
+    float sum = 0;
+    
+    for (int i = 0; i < length; i++) {
+        sum += numberArray[i];
     }
+    
+    return sum/length;
 }
 
 
-//picking the middle number as median
-median = fiveIntegers[2];
+int median(int numberArray[], int length) {
+    return numberArray[length/2];
+}
 
-//dividing by total to get the mean
-mean = mean/5;
 
-cout<<"The median is "<< median <<endl;
-cout<<"The mean is "<< mean <<endl;
-return 0;
+int mode(int numberArray[], int length) {
+    int occurrences[length];
+
+    for (int i =0; i<length; i++) {
+        occurrences[i] = 0;
+    }
+    int maximum_occurrences = 1;
+
+    for (int a = 0; a < length; a++) {
+        occurrences[a] = 1;
+        for (int b = 1; b < length-a; b++) {
+            if (numberArray[a] == numberArray[a+b]) {
+                occurrences[a]++;
+            }
+        }
+        if (occurrences[a] > maximum_occurrences) {
+            maximum_occurrences = occurrences[a];
+        }
+        a+=occurrences[a]-1;
+    }
+
+    for (int i = 0; i<length; i++) {
+        if (occurrences[i]== maximum_occurrences) {
+            cout<<numberArray[i]<< " occurred " << occurrences[i] << " time(s)"<<endl;
+        }
+    }
+    return 1;
 }
