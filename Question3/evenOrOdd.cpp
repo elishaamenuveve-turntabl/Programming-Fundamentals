@@ -11,10 +11,9 @@ int main() {
     bool odd = userNumber%2;
 
     if (odd) {
-        // int notDivisibleByUserNumber[30];
         int counter = 0;
         int currentNumber = 0;
-        while (counter < 20) {
+        while (counter < 30) {
             currentNumber++;
             if (currentNumber%userNumber != 0) {
                 cout<<currentNumber<<endl;
