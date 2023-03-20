@@ -53,23 +53,23 @@ int occurrences[numberOfIntegers];
 for (int i =0; i<numberOfIntegers; i++) {
     occurrences[i] = 0;
 }
+int maximum_occurrences = 1;
 
 for (int a = 0; a < numberOfIntegers; a++) {
     occurrences[a] = 1;
     for (int b = 1; b < numberOfIntegers-a; b++) {
-        if (fiveIntegers[a] == fiveIntegers[b]) {
+        if (fiveIntegers[a] == fiveIntegers[a+b]) {
             occurrences[a]++;
         }
+    }
+    if (occurrences[a] > maximum_occurrences) {
+        maximum_occurrences = occurrences[a];
     }
     a+=occurrences[a]-1;
 }
 
-for (int i =0; i<numberOfIntegers; i++) {
-    cout<<occurrences[i]<<endl;
-}
-
 for (int i = 0; i<numberOfIntegers; i++) {
-    if (occurrences != 0) {
+    if (occurrences[i]== maximum_occurrences) {
         cout<<fiveIntegers[i]<< " occurred " << occurrences[i] << " time(s)"<<endl;
     }
 }
@@ -83,6 +83,5 @@ mean = mean/5;
 
 cout<<"The median is "<< median <<endl;
 cout<<"The mean is "<< mean <<endl;
-cout<<"The mode is "<< mode <<endl;
 return 0;
 }
