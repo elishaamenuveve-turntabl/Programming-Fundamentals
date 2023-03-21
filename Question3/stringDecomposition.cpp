@@ -26,13 +26,6 @@ int main () {
     cin >> HyphenConnectedWords;
 
     cout << "String Read: " << HyphenConnectedWords << endl;
-    for (int i = 0; i < 256; i++)
-    {
-        if (HyphenConnectedWords[i] == '\0') {
-            lengthOfString = i;
-            i = 256;
-        }
-    }
     int lastHyphenPosition = -1;
 
     cout << "Length of String " << lengthOfString << endl;
@@ -44,9 +37,10 @@ int main () {
             displayWordCountAndWord(numberOfCharacters, lastHyphenPosition, HyphenConnectedWords);
             lastHyphenPosition = i;
 
-        } else if (i == (lengthOfString-1)) {
-            int numberOfCharacters = i - lastHyphenPosition;
+        } else if (HyphenConnectedWords[i] == '\0') {
+            int numberOfCharacters = i - lastHyphenPosition -1;
             displayWordCountAndWord(numberOfCharacters, lastHyphenPosition, HyphenConnectedWords);
+            i = 256;
         } 
     }
 
