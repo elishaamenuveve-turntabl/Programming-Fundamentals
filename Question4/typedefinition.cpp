@@ -1,5 +1,4 @@
 #include <iostream>
-#include <array>
 
 using namespace std;
 
@@ -10,7 +9,7 @@ Using the type, create an array and then read 10 string objects from the standar
 and output the string with the largest size.
  */
 
-    typedef array<string, 10> tenStringObjects; 
+    typedef string[10] tenStringObjects; 
     tenStringObjects inputs;
     int indexOfStringWithLargestSize = 0;
 
