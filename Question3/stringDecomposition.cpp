@@ -1,8 +1,9 @@
 #include <iostream>
+#include <cstring>
 
 using namespace std;
 
-void displayWordCountAndWord(int numberOfCharacters, int startingPosition, string stringOfWords) {
+void displayWordCountAndWord(int numberOfCharacters, int startingPosition, char stringOfWords[]) {
     cout << "[ " << numberOfCharacters << " ] ";
     for (int character = 1; character <= numberOfCharacters ; ++character) {
         cout << stringOfWords[startingPosition + character];
@@ -18,17 +19,25 @@ int main () {
      Your solution should employ primitive C style strings, using character arrays and pointers.
     */
 
-    string HyphenConnectedWords;
+    char HyphenConnectedWords[256] {'\0'};
+    int lengthOfString = 256;
+
     cout << "Please Enter a sentence with hyphens instead of spaces: ";
     cin >> HyphenConnectedWords;
 
     cout << "String Read: " << HyphenConnectedWords << endl;
-    int lengthOfString = HyphenConnectedWords.length();
+    for (int i = 0; i < 256; i++)
+    {
+        if (HyphenConnectedWords[i] == '\0') {
+            lengthOfString = i;
+            i = 256;
+        }
+    }
     int lastHyphenPosition = -1;
 
-    cout << "Lenght of String " << lengthOfString << endl;
+    cout << "Length of String " << lengthOfString << endl;
 
-    for (size_t i = 0; i < lengthOfString; ++i) {
+    for (int i = 0; i < lengthOfString; ++i) {
         if (HyphenConnectedWords[i] == '-') {
 
             int numberOfCharacters = (i - lastHyphenPosition) -1;

@@ -9,5 +9,6 @@ Using the type, create an array and then read 10 string objects from the standar
 and output the string with the largest size.
  */
 
+// typdef <
     return 0;
 }
