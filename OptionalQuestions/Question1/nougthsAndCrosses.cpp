@@ -32,10 +32,7 @@ void makeMove(char board[][3], bool& displayX, int coordinate[]) {
 }
 void requestMove(int moves[], bool playerOnesMove) {
     // make sure coordinates are valid
-    int player;
-    if (playerOnesMove)
-        player = 1;
-    else player = 2;
+    int player = playerOnesMove? 1 : 2;
     cout << "Player " << player << "'s move" << endl;
     cout << "Coordinates start from row 0 column 0 and end at row 2 column 2.";
     cout << "Please type coordinates (e.g. 1 2) that haven't been taken: ";
