@@ -1,5 +1,4 @@
 #include <iostream>
-#include <array>
 
 using namespace std;
 
@@ -11,7 +10,7 @@ and output the string with the largest size.
  */
 
     // type aliasing is more readable 
-    using tenStringObjects = string[10] ; 
+    using tenStringObjects = string[10]; 
     tenStringObjects inputs;
     int indexOfStringWithLargestSize = 0;
 
