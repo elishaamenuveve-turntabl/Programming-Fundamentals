@@ -1,9 +1,8 @@
 #include <iostream>
-#include <noughtsAndCrossesHelperFunctions.h>
 
 using namespace std;
 
-namespace tictacNo {
+
     void displayBoard(char board[][3]) {
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
@@ -46,4 +45,3 @@ void requestMove(int moves[], bool playerOnesMove) {
 }
 
 
-}
